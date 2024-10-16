@@ -22,7 +22,7 @@
   - Atualiza os dados de um cliente existente.
   - O corpo deve conter um objeto Cliente com novos dados. Retorna 204 No Content ao concluir a atualização.
 
- - `DELETE /api/clientes/{id}`
+- `DELETE /api/clientes/{id}`
   - Remove um cliente com base no id informado.
   - Retorna 204 No Content ao concluir a remoção. Retorna 404 Not Found se o cliente não for encontrado.
 
