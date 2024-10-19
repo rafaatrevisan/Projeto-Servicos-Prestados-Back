@@ -15,7 +15,7 @@ import java.util.List;
 public class WebConfig {
 
     @Bean
-    public FilterRegistrationBean<CorsFilter> corsFilter(){
+    public CorsFilter corsFilter() {
         List<String> all = Arrays.asList("*");
 
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -27,10 +27,6 @@ public class WebConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
 
-        CorsFilter corsFilter = new CorsFilter(source);
-        FilterRegistrationBean<CorsFilter> filter = new FilterRegistrationBean<>(corsFilter);
-        filter.setOrder(Ordered.HIGHEST_PRECEDENCE);
-
-        return filter;
+        return new CorsFilter(source);
     }
 }
