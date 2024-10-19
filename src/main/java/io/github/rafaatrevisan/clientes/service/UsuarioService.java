@@ -1,5 +1,6 @@
 package io.github.rafaatrevisan.clientes.service;
 
+import io.github.rafaatrevisan.clientes.exception.UsuarioCadastradoException;
 import io.github.rafaatrevisan.clientes.model.entity.Usuario;
 import io.github.rafaatrevisan.clientes.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,14 @@ public class UsuarioService implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository repository;
+
+    public Usuario salvar(Usuario usuario){
+        boolean exists = repository.existsByEmail(usuario.getEmail());
+        if(exists){
+            throw new UsuarioCadastradoException();
+        }
+        return repository.save(usuario);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
